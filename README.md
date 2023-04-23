@@ -1,17 +1,17 @@
-# Public Dev Resource API
+# Dev Resources API
 
 ## About
 
-Public Dev Resource API is an API that provides a collective of free resources for software developers to enhance their skills and enable continuous learning.
+Dev Resources API is an API that provides a collective of free resources for software developers to enhance their skills and enable continuous learning.
 
 ## Getting Started
 
-To use this API, you will need to have an AWS account and set up a DynamoDB table to store the resource data. You will also need to have Node.js and npm installed on your machine.
+To use this API, you will need to have an mongoose account and set up a mongodb cluster to store the resource data. You will also need to have Node.js and npm installed on your machine.
 
 1. Clone this repository to your local machine.
 
    ```bash
-   git clone https://github.com/DevEducate/public-dev-resource-api.git
+   git clone https://github.com/DevEducate/dev-resources-api.git
    ```
 
 2. Install the dependencies.
@@ -20,23 +20,27 @@ To use this API, you will need to have an AWS account and set up a DynamoDB tabl
    npm install
    ```
 
-3. Set up your AWS credentials. You can either set them as environment variables or in a `~/.aws/credentials` file. See the [AWS SDK for JavaScript documentation](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/setting-credentials-node.html) for more information.
+3. Set up your MongoDB connection with Mongoose. You can add the following code to your `.env` file in the root directory of the project:
 
-4. Create a DynamoDB table for your resource data. You can use the AWS Management Console or the AWS CLI to create the table. See the `previous instructions` for more information.
-
-5. Populate the table with sample data.
-
-   ```bash
-    npm run seed
+   ```makefile
+   DATABASE_URL=mongodb+srv://admin:<PASSWORD>@cluster0.xutqnbl.mongodb.net/?retryWrites=true&w=majority
    ```
 
-6. Start the API server.
+   Create a MongoDB database for your resource data. You can use a cloud-based MongoDB service like MongoDB Atlas or run a local instance of MongoDB. See the [MongoDB documentation](https://www.mongodb.com/docs/manual/administration/install-community/) and [Mongoose documentation](https://mongoosejs.com/docs/) for more information.
 
-   ```bash
-   npm run start
-   ```
+## Populate the database with sample data
 
-7. Make requests to the API at `http://localhost:3000`. See the [API documentation](.github/API.md) for more information on the available endpoints.
+```bash
+   npm run seed
+```
+
+## Start the API server.
+
+```bash
+   npm run dev
+```
+
+Make requests to the API at `http://localhost:3000` or your custom port picked in your `.env` file defined as `PORT`. See the [API documentation](https://github.com/DevEducate/dev-resources-api/blob/main/.github/API.md) for more information on the available endpoints.
 
 ## Contributing
 
