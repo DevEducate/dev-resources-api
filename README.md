@@ -23,7 +23,7 @@ To use this API, you will need to have an mongoose account and set up a mongodb 
 3. Set up your MongoDB connection with Mongoose. You can add the following code to your `.env` file in the root directory of the project:
 
    ```makefile
-   DATABASE_URL=mongodb+srv://admin:<PASSWORD>@cluster0.xutqnbl.mongodb.net/?retryWrites=true&w=majority
+   DATABASE_URL=<YOUR_MONGODBURL>
    ```
 
    Create a MongoDB database for your resource data. You can use a cloud-based MongoDB service like MongoDB Atlas or run a local instance of MongoDB. See the [MongoDB documentation](https://www.mongodb.com/docs/manual/administration/install-community/) and [Mongoose documentation](https://mongoosejs.com/docs/) for more information.
