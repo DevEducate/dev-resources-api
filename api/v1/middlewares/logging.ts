@@ -47,23 +47,30 @@ export const logRequests = (
   next(); // Call the next middleware or route handler in the chain
 };
 
-// Middleware to log responses
+// Middleware to log responses with optional error logging
 export const logResponses = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
+  errorCallback?: (error: Error) => void
 ) => {
   // Save the original `send` function of the response object
   const originalSend = res.send;
 
   // Override the `send` function of the response object
   res.send = function (...args: any[]) {
-    // Log response information
-    logger.info({
-      message: `Response status: ${res.statusCode}`,
-      headers: res.getHeaders(),
-      body: args[0],
-    });
+    const error = res.locals.error;
+    if (error && errorCallback) {
+      errorCallback(error);
+    } else {
+      // Log response information
+      logger.info({
+        message: `Response status: ${res.statusCode}`,
+        headers: res.getHeaders(),
+        body: args[0],
+      });
+    }
+
     // Call the original `send` function with the provided arguments
     return originalSend.call(res, ...args);
   };
