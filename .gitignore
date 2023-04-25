@@ -16,3 +16,10 @@ dist/
 
 # AWS credentials
 ~/.aws/credentials
+
+# logging files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

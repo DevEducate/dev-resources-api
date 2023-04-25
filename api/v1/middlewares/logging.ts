@@ -8,7 +8,7 @@ import appSettings from "./../../../config/appSettings";
 const { elasticsearch } = appSettings;
 
 // logger configuration
-const logger = winston.createLogger({
+export const logger = winston.createLogger({
   level: "info",
   format: winston.format.combine(
     winston.format.timestamp(), // Adds a timestamp to the log entries
@@ -31,15 +31,6 @@ const logger = winston.createLogger({
     }),
   ],
 });
-
-// Function to log errors
-const logError = (error: Error) => {
-  logger.error({
-    message: "Error",
-    error: error.message,
-    stack: error.stack,
-  });
-};
 
 // Middleware to log incoming requests
 export const logRequests = (
@@ -68,17 +59,12 @@ export const logResponses = (
 
   // Override the `send` function of the response object
   res.send = function (...args: any[]) {
-    const error = res.locals.error;
-    if (error) {
-      logError(error);
-    } else {
-      // Log response information
-      logger.info({
-        message: `Response status: ${res.statusCode}`,
-        headers: res.getHeaders(),
-        body: args[0],
-      });
-    }
+    // Log response information
+    logger.info({
+      message: `Response status: ${res.statusCode}`,
+      headers: res.getHeaders(),
+      body: args[0],
+    });
 
     // Call the original `send` function with the provided arguments
     return originalSend.call(res, ...args);
