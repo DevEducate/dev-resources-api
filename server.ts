@@ -1,9 +1,11 @@
 require("dotenv").config();
+import { appSettings } from "./config/appSettings";
+const { app, database } = appSettings;
 
 import express from "express";
 
 const server = express();
-const port = process.env.PORT || 3000;
+const port = app.port;
 import connectDB from "./config/database";
 
 // middlewares
@@ -11,7 +13,7 @@ import { logRequests, logResponses } from "./api/v1/middlewares/logging";
 
 const startServer = async () => {
   try {
-    await connectDB(process.env.DATABASE_URL as string);
+    await connectDB(database.url as string);
     server
       .use(logRequests)
       .use(logResponses)

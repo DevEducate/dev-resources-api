@@ -2,6 +2,10 @@ import { Request, Response, NextFunction } from "express";
 import winston from "winston";
 import { ElasticsearchTransport } from "winston-elasticsearch";
 
+// app settings
+import { appSettings } from "./../../../config/appSettings";
+const { elasticsearch } = appSettings;
+
 // logger configuration
 const logger = winston.createLogger({
   level: "info",
@@ -21,7 +25,7 @@ const logger = winston.createLogger({
       level: "info",
       indexPrefix: "dev-resources-api-logs",
       clientOpts: {
-        node: `http://elastic:${process.env.ELASTIC_PASSWORD}@${process.env.DOMAIN}:9200`,
+        node: elasticsearch.url,
       }, // this code makes it so that the logs are sent to Elasticsearch running on localhost:9200
     }),
   ],
