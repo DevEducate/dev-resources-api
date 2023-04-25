@@ -17,7 +17,7 @@ const logger = winston.createLogger({
       // Log entries to Elasticsearch
       level: "info",
       indexPrefix: "dev-resources-api-logs",
-      clientOpts: { node: "http://localhost:3000/api/v1/logs" }, // this code makes it so that the logs are sent to Elasticsearch running on localhost:9200
+      clientOpts: { node: `${process.env.BASE_URL}/api/v1/logs` }, // this code makes it so that the logs are sent to Elasticsearch running on localhost:9200
     }),
   ],
 });
