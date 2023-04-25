@@ -1,5 +1,5 @@
 require("dotenv").config();
-import { appSettings } from "./config/appSettings";
+import appSettings from "./config/appSettings";
 const { app, database } = appSettings;
 
 import express from "express";

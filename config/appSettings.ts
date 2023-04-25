@@ -1,4 +1,4 @@
-export const appSettings = {
+const appSettings = {
   // App setting
   app: {
     port: process.env.PORT || 3000,
@@ -15,3 +15,5 @@ export const appSettings = {
     url: `http://elastic:${process.env.ELASTIC_PASSWORD}@${process.env.DOMAIN}:9200`,
   },
 };
+
+export default appSettings;

@@ -3,7 +3,7 @@ import winston from "winston";
 import { ElasticsearchTransport } from "winston-elasticsearch";
 
 // app settings
-import { appSettings } from "./../../../config/appSettings";
+import appSettings from "./../../../config/appSettings";
 const { elasticsearch } = appSettings;
 
 // logger configuration
