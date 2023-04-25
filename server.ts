@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 import connectDB from "./database/connect";
 
 // middlewares
-import { logRequests, logResponses } from "./middlewares/logging";
+import { logRequests, logResponses } from "./api/v1/middlewares/logging";
 
 const startServer = async () => {
   try {

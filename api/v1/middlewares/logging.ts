@@ -11,13 +11,18 @@ const logger = winston.createLogger({
   ),
   transports: [
     new winston.transports.Console(), // Logs to the console
-    new winston.transports.File({ filename: "logs/error.log", level: "error" }), // Log errors to a file
-    new winston.transports.File({ filename: "logs/combined.log" }), // Log all entries to a file
+    new winston.transports.File({
+      filename: "api/v1/logs/error.log",
+      level: "error",
+    }), // Log errors to a file
+    new winston.transports.File({ filename: "api/v1/logs/combined.log" }), // Log all entries to a file
     new ElasticsearchTransport({
       // Log entries to Elasticsearch
       level: "info",
       indexPrefix: "dev-resources-api-logs",
-      clientOpts: { node: `${process.env.BASE_URL}/api/v1/logs` }, // this code makes it so that the logs are sent to Elasticsearch running on localhost:9200
+      clientOpts: {
+        node: `http://elastic:${process.env.ELASTIC_PASSWORD}@${process.env.DOMAIN}:9200`,
+      }, // this code makes it so that the logs are sent to Elasticsearch running on localhost:9200
     }),
   ],
 });
