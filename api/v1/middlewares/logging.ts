@@ -1,3 +1,4 @@
+// logging.ts
 import { Request, Response, NextFunction } from "express";
 import winston from "winston";
 import { ElasticsearchTransport } from "winston-elasticsearch";
@@ -31,6 +32,15 @@ const logger = winston.createLogger({
   ],
 });
 
+// Function to log errors
+const logError = (error: Error) => {
+  logger.error({
+    message: "Error",
+    error: error.message,
+    stack: error.stack,
+  });
+};
+
 // Middleware to log incoming requests
 export const logRequests = (
   req: Request,
@@ -47,12 +57,11 @@ export const logRequests = (
   next(); // Call the next middleware or route handler in the chain
 };
 
-// Middleware to log responses with optional error logging
+// Middleware to log responses
 export const logResponses = (
   req: Request,
   res: Response,
-  next: NextFunction,
-  errorCallback?: (error: Error) => void
+  next: NextFunction
 ) => {
   // Save the original `send` function of the response object
   const originalSend = res.send;
@@ -60,8 +69,8 @@ export const logResponses = (
   // Override the `send` function of the response object
   res.send = function (...args: any[]) {
     const error = res.locals.error;
-    if (error && errorCallback) {
-      errorCallback(error);
+    if (error) {
+      logError(error);
     } else {
       // Log response information
       logger.info({
