@@ -4,7 +4,7 @@ import express from "express";
 
 const server = express();
 const port = process.env.PORT || 3000;
-import connectDB from "./database/connect";
+import connectDB from "./config/database";
 
 // middlewares
 import { logRequests, logResponses } from "./api/v1/middlewares/logging";
