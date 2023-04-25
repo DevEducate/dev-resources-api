@@ -6,6 +6,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^7.0.4",
+    "nodemon": "^2.0.22",
     "winston": "^3.8.2",
     "winston-elasticsearch": "^0.17.2"
   },
