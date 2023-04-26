@@ -23,9 +23,7 @@ const startServer = async () => {
         // This will throw an error and trigger the error logging middleware
         throw new Error("Sample error");
       })
-      .use(errorLoggingMiddleware)
-      .use(logResponses)
-
+      .use(errorLoggingMiddleware, logResponses)
       .listen(port, () => {
         console.log(`Server running at http://localhost:${port}`);
       });
