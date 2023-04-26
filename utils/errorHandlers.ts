@@ -32,3 +32,31 @@ export const createInternalServerError = (
   message,
   statusCode: 500,
 });
+
+export const createConflictError = (
+  message: string
+): { message: string; statusCode: number } => ({
+  message,
+  statusCode: 409,
+});
+
+export const createValidationError = (
+  message: string
+): { message: string; statusCode: number } => ({
+  message,
+  statusCode: 422,
+});
+
+export const createUnauthorizedError = (
+  message: string
+): { message: string; statusCode: number } => ({
+  message,
+  statusCode: 401,
+});
+
+export const createNotImplementedError = (
+  message: string
+): { message: string; statusCode: number } => ({
+  message,
+  statusCode: 501,
+});
